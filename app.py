@@ -46,8 +46,8 @@ import PyPDF2
 # LangChain components for AI and document processing
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import BedrockEmbeddings
-from langchain_community.chat_models import BedrockChat
 from langchain_community.vectorstores import Chroma
+from langchain_aws import ChatBedrockConverse
 from langchain.chains import RetrievalQA
 
 # --- ENVIRONMENT SETUP ---
@@ -64,16 +64,16 @@ TEMP_DIR = tempfile.mkdtemp(prefix="knowledgebase_chromadb_")
 CHROMA_DIR = os.path.join(TEMP_DIR, "chroma_db")
 
 # Register cleanup function to remove temp directory when app exits
-def cleanup_temp_dir():
-    """Clean up temporary directory when application exits"""
-    try:
-        if os.path.exists(TEMP_DIR):
-            shutil.rmtree(TEMP_DIR, ignore_errors=True)
-            print(f"✅ Cleaned up temporary directory: {TEMP_DIR}")
-    except Exception as e:
-        print(f"⚠️ Could not clean up temporary directory: {e}")
+# def cleanup_temp_dir():
+#     """Clean up temporary directory when application exits"""
+#     try:
+#         if os.path.exists(TEMP_DIR):
+#             shutil.rmtree(TEMP_DIR, ignore_errors=True)
+#             print(f"✅ Cleaned up temporary directory: {TEMP_DIR}")
+#     except Exception as e:
+#         print(f"⚠️ Could not clean up temporary directory: {e}")
 
-atexit.register(cleanup_temp_dir)
+# atexit.register(cleanup_temp_dir)
 
 # AWS Bedrock model IDs - these are the AI models we'll use
 AWS_BEDROCK_EMBEDDING_MODEL_ID = "amazon.titan-embed-text-v1"  # For converting text to vectors
@@ -497,13 +497,9 @@ elif page == "Ask Questions":
             # Step 2: Initialize the Bedrock LLM (completion-style)
             from langchain_community.llms import Bedrock
 
-            llm = Bedrock(
+            llm = ChatBedrockConverse(
                 region_name=AWS_REGION,
-                model_id=AWS_BEDROCK_LLM_MODEL_ID,
-                model_kwargs={
-                    "temperature": 0,
-                    "max_tokens": 1000
-                }
+                model_id=AWS_BEDROCK_LLM_MODEL_ID
             )
 
             # Step 3: Text input for question
@@ -521,19 +517,25 @@ You are an AI assistant helping answer questions based on the provided context.
 
 Context:
 {context}
-
-Question:
-{question}
-
-Answer:
 """
 
+                    messages = [
+                        (
+                            "system",
+                            prompt,
+                        ),
+                        (
+                            "human", 
+                            question,
+                        ),
+                    ]
+
                     # Generate completion
-                    answer = llm(prompt)
+                    answer = llm.invoke(messages)
 
                     # Display answer
                     st.markdown("### 💬 Answer")
-                    st.write(answer)
+                    st.write(answer.content)
 
                     # Display sources
                     st.markdown("### 📄 Retrieved Context")

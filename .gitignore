@@ -1,0 +1,45 @@
+# GenAI Bedrock Knowledgebase - Simple .gitignore
+# =================================================
+
+# --- SENSITIVE FILES (NEVER COMMIT THESE!) ---
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+
+# --- APP DATA ---
+# Uploaded documents
+data/
+
+# Vector database (though we use temp dirs)
+chroma_db/
+chromadb/
+
+# Temporary files
+temp_*/
+tmp_*/
+
+# --- PYTHON BASICS ---
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- STREAMLIT ---
+.streamlit/
+
+# --- IDE ---
+.vscode/
+.idea/
+
+# --- OS FILES ---
+.DS_Store
+Thumbs.db
+*.tmp
+
+# --- LOGS ---
+*.log
