@@ -1,0 +1,202 @@
+He l p u s  i m pr o v e  t h e  E l a s t i c  S t a c k
+U s a g e c o l l ec t i o n  i s  en a b l ed . This allows us to learn what our users are most interested in, so we can improve our products and services.
+Refer to our . D i s a b l e  u s a ge  c o l l e c t i o n .
+[ / a pp/ m a n a ge m e n t / k i b a n a / s e t t i n gs ]
+D i s m i s sP r i v a c y S t a t e m e n t  [ h t t ps : / / w w w . e l a s t i c . c o / l e ga l / pr o d u c t - pr i v a c y- s t a t e m e n t ]
+A W S  A c c o u n t  N a m e A n y
+ A W S  R e g i o n A n y
+M o d el  u s a g e  
+O v er a l l  i n v o c a t i o n  r a t e - b y m o d el O v er a l l  er r o r  r a t e - b y er r o r  t yp e
+O v er a l l  i n v o c a t i o n  l a t en c y - b y m o d el O v er a l l  i n v o c a t i o n  t h r o t t l e - b y m o d elA m a z o n  B e d r o c k  O v e r vi e w A m a z o n  B e d r o c k  G u a r d r …[ / a pp/ r ?
+l = D A S HBO A R D _ A P P _ L O C A T O R & v = 8 . 17 . 2& l z = N 4 IgJ gh gz gF gR ge w gJ z A S T C A X C
+A m a z on
+B e d r oc k
+Primary metrics and logs from
+Amazon Bedrock service. This
+dashboard contains:
+Invocation rates
+Error rates
+Token usage
+Latency information
+LLM prompt, input and
+responseT o t a l  
+i n v o c a t i
+o n s
+7T o t a l  
+t o k en s
+3 k
+T o t a l  
+er r o r s
+1
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-pro-v1:0
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-pro-v1:0
+Invocation client
+errors
+Invocation server
+errors
+Invocation client
+errors
+Invocation server
+errors
+amazon.no‐
+va-pro-v1:0
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-pro-v1:0
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-pro-v1:0
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-pro-v1:0
+Last 1 hour
+D a t a s e t  f i l t e rF i l t e r  y o u r  d a t a  u s i n g K Q L s y n t a x[ / a pp/ h o m e ] ⌘ / F i n d  a pps ,  c o n t e n t ,  a n d  m E
+D D a s h b o a r d s [ A m a z o n  B e d r o c k ]  O v e r v i e w F u l l  s c r e e n S h a r e D u pl i c a t e R e s e t M a n a g e d
+
+T o k en  u s a g e T o k en  u s a g e - b y m o d el
+O u t p u t :  G en er a t ed  i m a g es O u t p u t :  G en er a t ed  i m a g es  - b y m o d el
+I n v o c a t i o n  l o g s
+T e x t  /  C h a t  M e t r i c s
+Input tokens
+Output tokens
+Input tokens
+Output tokens
+ama‐
+zon.no‐
+va-micro-
+v1:0 -
+Input
+tokens
+ama‐
+zon.no‐
+va-pro-
+v1:0 -
+Input
+tokens
+ama‐
+zon.no‐
+va-lite-
+ama‐
+zon.no‐
+va-micro-
+v1:0 -
+Input
+tokens
+ama‐
+zon.no‐
+va-pro-
+v1:0 -
+Input
+tokens
+ama‐
+zon.no‐
+va-lite-
+I m a g e  M e t r i c s
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-pro-v1:0
+amazon.no‐
+va-lite-v1:0
+amazon.no‐
+va-micro-
+v1:0
+amazon.no‐
+va-pro-v1:0
+L o g s
+7 results C o l u m n s  S o r t  f i e l d s
+amazon.nova-
+micro-v1:0 - 4 187 190 1,029 - assistant
+amazon.nova-
+micro-v1:0 - 203 1,139 181 1,008 - assistant
+amazon.nova-
+micro-v1:0 - 7 104 434 2,699 - assistantg e n _ a i  r e q u e
+s t  m o d e l  i dg e n _ a i  r e q u e
+s t  m o d e l  v e r s i o ng e n _ a i  u s a g
+e  p r o m p t _ t o k e n sg e n _ a i  p e r f o r
+m a n c e  r e q u e s t _
+s i z eg e n _ a i  u s a g
+e  c o m p l e t i o n _ t o
+k e n sg e n _ a i  p e r f o r
+m a n c e  r e s p o n s e
+_ s i z ea w s _ b e d r o c
+k  i n v o c a t i o n  e r r o
+r _ c o d eg e n _ a i  r e q u e
+s t  m o d e l  r o l e[ / a pp/ h o m e ] ⌘ /
+[ A m a z o n  B e d r o c k ]  O v e r v i e w
+
+P r o m p t ,  r es p o n s e,  a n d  t o k en  u t i l i s a t i o n  d et a i l s
+I n i t i a l  a n d  f i n a l  r es p o n s e t i m e c o m p a r i s o n  - b y m o d el P er c en t a g e c o m p a r i s o n  o f  i n i t i a l  a n d  f i n a l  r es p o n s e t i m e - b y m o d elamazon.nova-
+lite-v1:0 -  - 0  - 0AccessDeniedEx
+ception - 
+6 documents C o l u m n s  S o r t  f i e l d s 
+Feb 23, 2025 @ 15:48:59.000{"additionalModelRequ
+estFields":
+{},"inferenceConfig"…203In fields where 
+wildflowers bloom,
+Amid the whispers of…18
+Feb 23, 2025 @ 15:46:49.000{"messages":
+[{"content":
+[{"text":"Explain th…7Microservices 
+architecture offers 
+several benefits tha…65
+Feb 23, 2025 @ 15:46:25.000{"messages":
+[{"content":
+[{"text":"Explain th…7Microservices 
+architecture offers 
+several key benefits…43
+Feb 23, 2025 @ 15:43:19.000{"messages":
+[{"content":
+[{"text":"Explain th…7Microservices 
+architecture offers 
+several key benefits…63
+Feb 23, 2025 @ 15:43:11.000{"messages":
+[{"content":
+[{"text":"Explain th…7Microservices 
+architecture offers 
+several key benefits…55
+Feb232025@15:30:41000{"additionalModelRequ 4Inthequietofthe 19@ t i m e s t a m p  g e n _ a i  p r o m p t g e n _ a i  u s a g e  p r o m p t _ t
+o k e n sa w s _ b e d r o c k  i n v o c a t i o
+n  o u t p u t  c o m p l e t i o n _ t e x tg e n _ a i  u s a g e  c o m p l e t
+o n _ t o k e n s
+amazon.nova-lite-v1:0 - Start response time
+amazon.nova-micro-v1:0 - Start response time
+amazon.nova-lite-v1:0 - Start response time
+amazon.nova-micro-v1:0 - Start response time
+amazon.nova-lite-v1:0 - Start response time
+amazon.nova-micro-v1:0 - Start response time
+amazon.nova-lite-v1:0 - Start response time
+amazon.nova-micro-v1:0 - Start response time[ / a pp/ h o m e ] ⌘ /
+[ A m a z o n  B e d r o c k ]  O v e r v i e w

@@ -1,0 +1,152 @@
+AWS TechConnect 
+AI to the Future! 
+Decoding GenAI: From Tokens to Transformation 
+By: Pat Santora 
+Sr Solutions Architect / AWS Labs 
+https://www.linkedin.com/in/patrick-santora-jr/  
+
+
+Our Expedition Map 
+Part 1: Decoding GenAI – What it is and why it matters 
+Part 2: Tools of Tomorrow, Available Today– Concepts 
+and Solutions 
+Part 3: Glimpse Into the Future – Tomorrow’s AI, Today’s 
+Opportunity 
+Part 4: Your Next Steps – Inspiration to Implementation 
+Q&A – Your questions answered 
+
+Part 1: 
+Decoding the GenAI Phenomenon 
+
+Stable Diffusion accumulated 40k 
+stars 
+on GitHub in its ﬁrst 90 days 
+Days since repository was started # of stars on GitHub 
+400 8001,2001,6002,0002,4002,8003,20040,000
+30,000
+20,000
+10,000Stable Diffusion 
+Cockroach Ethereu
+mBitcoin Kafka 
+Stable 
+Diffusion 
+ChatGPT reached the 1 million 
+users mark in just 5 days … 
+… and surged to 57 million 
+users in its ﬁrst month after 
+launch. 
+
+What is GenAI? 
+•AI systems that create human-like content from learned 
+patterns 
+•Foundation models trained on massive datasets 
+•Works by processing and predicting sequences of tokens 
+•Fundamentally different from traditional rules-based AI 
+
+GenAI Capabilities & Limitation 
+Superpowers and Kryptonite 
+•Strengths: Content creation, knowledge processing, 
+personalization 
+•Limitations: Hallucinations, reasoning gaps, context 
+boundaries 
+•Business transformation potential: 30-50% productivity 
+gains in key areas 
+•Implementation challenges: Integration, governance, 
+observability, skills 
+
+Success Stories 
+The Journey Taken 
+•Bynder: Reduced Search Time by 75% using Amazon 
+Bedrock 
+•Crpyto.com: Delivers Accurate Sentiment Analysis in 1 
+Second with Generative AI on AWS 
+•Ferarri: Advances Generative AI for Customer 
+Personalization and Production Efficiency 
+
+
+Part 2: 
+Tools of Today & Tomorrow 
+
+The GenAI Ecosystem 
+Your Transformation Toolkit 
+•Foundation Models: Nova, Claude, Llama, DeepSeek - 
+each with unique strengths 
+•Enterprise Platforms: AWS Bedrock, SageMaker, 
+Amazon Q 
+•Frameworks: HuggingFace, LangChain, LlamaIndex, 
+Griptape, and more 
+•Favorite tools: Amazon Q, Claude, ChatGPT, Perplexity, 
+Cursor 
+
+The GenAI Ecosystem 
+Resources 
+•Amazon Bedrock: https://aws.amazon.com/bedrock/  
+•Amazon SageMaker: https://aws.amazon.com/sagemaker/ 
+•Amazon Q: https://aws.amazon.com/q/ 
+•HuggingFace: https://huggingface.co/ 
+•LangChain: https://www.langchain.com/ 
+•LlamaIndex: https://www.llamaindex.ai/ 
+•Claude: https://claude.ai/ 
+•Perplexity: https://www.perplexity.ai/ 
+•Cursor: https://www.cursor.com/en 
+
+Part 3: 
+Glimpse into the future 
+
+Advanced GenAI Concepts 
+Know the now… Know the future 
+•Prompt Engineering: The art of effective AI communication 
+•RAG: Connecting AI to your proprietary knowledge 
+•Virtual Agents: Building your digital workforce 
+•Dynamic Workflows: Process transformation through AI 
+•Reasoning: Step-by-step thinking processes 
+•Fine Tuning: Teaching it your specific language 
+
+Part 4: 
+Your Next Steps 
+
+Implementation Roadmap 
+From Concept to Transformation 
+•Phase 1: Discovery & Prioritization - Find your high-value 
+use cases 
+•Phase 2: Proof of Concept - Validate technology and 
+business case 
+•Phase 3: Pilot & Scale - Controlled expansion with metrics 
+•Critical success factors: Executive sponsorship, skills 
+development, clear metrics 
+
+Live Demo 
+See Generative AI in action…. Great Scott!! 
+
+Demo Unpacked 
+The Art of the Possible 
+•Amazon Q Developer 
+•VSCode: https://code.visualstudio.com/ 
+•Amazon Q Command Line: 
+https://docs.aws.amazon.com/amazonq/latest/qde
+veloper-ug/command-line-installing.html  
+•Prompt: You are a developer that needs to be an 
+application. The application needs to be a vite 
+application that has a login form and a feedback 
+form. Once you are done building the app, then 
+deploy and run the app 
+https://aws.amazon.com/blogs/machine-learning/p
+rompt-engineering-techniques-and-best-practices-l
+earn-by-doing-with-anthropics-claude-3-on-amazo
+n-bedrock/ •Repos 
+•This repository contains sample code 
+demonstrating various use cases 
+leveraging Amazon Bedrock and 
+Generative AI. Each sample is a 
+separate project with its own directory, 
+and includes a basic Streamlit 
+frontend to help users quickly set up a 
+proof of concept. 
+https://github.com/aws-samples/genai-qu
+ickstart-pocs 
+
+
+Thank you & Q&A 
+Your Adventure Awaits! 
+Connect with Doc Santora: 
+https://www.linkedin.com/in/patrick-santora-jr/

@@ -1,0 +1,9 @@
+streamlit 
+boto3 
+langchain 
+langchain-aws
+langchain-community 
+chromadb 
+tiktoken 
+python-dotenv
+PyPDF2
