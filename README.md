@@ -1,24 +1,32 @@
-# 🧠 GenAI Bedrock with Chroma Knowledgebase  
+# 🧠 GenAI Bedrock with ChromaDB Knowledgebase (Strands Edition)
 
-A powerful document search and question-answering system built with AWS Bedrock, LangChain, Vhroma, and Streamlit. Upload your documents, ask questions in natural language, and get AI-powered answers with source citations.
+A powerful document search and question-answering system built with AWS Bedrock, Strands Agents, ChromaDB, and Streamlit. Upload your documents, ask questions in natural language, and get AI-powered answers with source citations using a lightweight agent framework.
 
 ## ✨ Features
 
 - **📄 Multi-format Support**: Upload PDF, TXT, and Markdown files
 - **🔍 Intelligent Search**: Vector-based similarity search using AWS Bedrock embeddings
 - **💬 Natural Language Q&A**: Ask questions and get contextual answers from your documents
+- **🤖 Agent-Powered**: Uses Strands agents framework for tool-based retrieval
 - **📚 Source Citations**: See which documents were used to generate each answer
 - **🌐 Web Interface**: Easy-to-use Streamlit interface
 - **🗂️ File Management**: Upload, view, and delete documents with ease
 - **🔄 Real-time Indexing**: Re-index your knowledgebase whenever you add new documents
+- **🧪 Debug Mode**: Test retrieval without LLM to verify chunk quality
 
 ## 🏗️ Architecture
 
 ```
 Documents (PDF/TXT/MD) → Text Extraction → Chunking → Vector Embeddings → ChromaDB
                                                                               ↓
-User Question → Similarity Search → Relevant Chunks → AWS Bedrock LLM → Answer + Sources
+User Question → Strands Agent → Retrieval Tool → Relevant Chunks → AWS Bedrock LLM → Answer + Sources
 ```
+
+**Key Architecture Changes:**
+- **Boto 3**: Direct AWS Bedrock API calls using boto3
+- **Strands Agents**: Lightweight agent framework with tool-based retrieval
+- **Native ChromaDB**: Persistent vector storage without abstraction layers
+- **Tool-based Retrieval**: Embeddings and similarity search handled by agent tools
 
 ## 🚀 Quick Start
 
@@ -58,9 +66,9 @@ User Question → Similarity Search → Relevant Chunks → AWS Bedrock LLM → 
    **Option C: .env file**
    ```bash
    # Create .env file in project root
-   AWS_ACCESS_KEY_ID=your_access_key
-   AWS_SECRET_ACCESS_KEY=your_secret_key
-   AWS_DEFAULT_REGION=us-west-2
+   AWS_REGION=us-west-2
+   EMBED_MODEL_ID=amazon.titan-embed-text-v1
+   LLM_MODEL_ID=us.anthropic.claude-3-5-haiku-20241022-v1:0
    ```
 
 4. **Enable Bedrock Models** (in AWS Console)
@@ -68,7 +76,8 @@ User Question → Similarity Search → Relevant Chunks → AWS Bedrock LLM → 
    - Navigate to "Model access"
    - Enable these models:
      - `amazon.titan-embed-text-v1` (for embeddings)
-     - `us.amazon.nova-micro-v1:0` (for Q&A)
+     - `us.anthropic.claude-3-5-haiku-20241022-v1:0` (for Q&A)
+     - Or any other supported Bedrock models
 
 5. **Run the application**
    ```bash
@@ -80,38 +89,52 @@ User Question → Similarity Search → Relevant Chunks → AWS Bedrock LLM → 
 ## 📖 Usage Guide
 
 ### 1. Upload Documents
-- Navigate to the **"📤 Upload Files"** tab
+- Navigate to the **"📤 Upload & Re-Index"** tab
 - Upload PDF, TXT, or MD files
 - Click **"🔄 Re-index Knowledgebase"** to process documents
 
-### 2. Ask Questions
+### 2. Test Retrieval (Optional)
 - Go to the **"💬 Ask Questions"** tab
-- Type your question in natural language
-- Click **"Generate Answer"** to get AI-powered responses
-- Review source documents to verify accuracy
+- Use **"🧪 Test Retrieval"** to verify chunks are being found correctly
+- Adjust top-K settings if needed
 
-### 3. Manage Files
+### 3. Ask Questions
+- Enter your question in the **"💬 Ask via LLM"** section
+- Choose your preferred Bedrock model
+- Adjust temperature for creativity vs. precision
+- Click **"Generate Answer"** to get AI-powered responses
+- Review source documents and similarity scores
+
+### 4. Manage Files
 - Use the **"🗑️ Delete Files"** tab to remove documents
 - Re-index after deleting files to update the search index
 
 ## 🔧 Configuration
 
 ### Model Settings
-You can modify these constants in `app.py`:
+You can modify these in your `.env` file or as environment variables:
 
-```python
+```bash
+# AWS region for Bedrock
+AWS_REGION=us-west-2
+
 # Embedding model for document vectorization
-AWS_BEDROCK_EMBEDDING_MODEL_ID = "amazon.titan-embed-text-v1"
+EMBED_MODEL_ID=amazon.titan-embed-text-v1
 
 # Language model for question answering
-AWS_BEDROCK_LLM_MODEL_ID = "us.amazon.nova-micro-v1:0"
+LLM_MODEL_ID=us.anthropic.claude-3-5-haiku-20241022-v1:0
+```
 
-# AWS region
-AWS_REGION = "us-west-2"
+### Text Processing Parameters
+Modify these constants in `app.py`:
 
+```python
 # Text chunking parameters
 chunk_size = 500        # Characters per chunk
 chunk_overlap = 50      # Overlap between chunks
+
+# Retrieval settings
+K_RETRIEVE = 3         # Top-K chunks to retrieve
 ```
 
 ### Directory Structure
@@ -120,7 +143,7 @@ project/
 ├── app.py              # Main application
 ├── data/               # Uploaded documents (auto-created)
 ├── requirements.txt    # Python dependencies
-├── .env               # AWS credentials (optional)
+├── .env               # AWS credentials & config (optional)
 └── README.md          # This file
 ```
 
@@ -130,43 +153,69 @@ Create a `requirements.txt` file with:
 
 ```txt
 streamlit>=1.28.0
-langchain>=0.1.0
-langchain-community>=0.0.10
+python-dotenv>=1.0.0
+PyPDF2>=3.0.0
 boto3>=1.34.0
 chromadb>=0.4.0
-PyPDF2>=3.0.0
-python-dotenv>=1.0.0
+strands-agents>=0.1.0
 ```
 
 ## 🛠️ How It Works
 
-### Document Processing
+### Document Processing Pipeline
 1. **Text Extraction**: PDFs are converted to text using PyPDF2
 2. **Chunking**: Documents are split into ~500 character chunks with 50 character overlap
 3. **Vectorization**: Each chunk is converted to embeddings using AWS Bedrock Titan
-4. **Storage**: Vectors are stored in ChromaDB for fast similarity search
+4. **Storage**: Vectors are stored in persistent ChromaDB for fast similarity search
 
-### Question Answering
-1. **Query Processing**: User question is converted to vector embedding
-2. **Similarity Search**: Find the 3 most relevant document chunks
-3. **Context Assembly**: Relevant chunks are sent to AWS Bedrock Nova Micro
-4. **Answer Generation**: LLM generates answer based on document context
-5. **Source Attribution**: Original document chunks are shown for verification
+### Agent-Based Question Answering
+1. **Agent Initialization**: Strands agent is created with Bedrock model and retrieval tool
+2. **Tool Invocation**: Agent calls `retrieve_chunks` tool with user question
+3. **Similarity Search**: Tool embeds question and finds most relevant document chunks
+4. **Context Assembly**: Retrieved chunks are formatted and passed to the LLM
+5. **Answer Generation**: Bedrock model generates answer based on document context
+6. **Source Attribution**: Original document chunks are shown with similarity scores
+
+### Strands Agent Flow
+```python
+# Agent with retrieval tool
+agent = Agent(model=bedrock_model, tools=[retrieve_chunks])
+
+# Agent automatically:
+# 1. Calls retrieve_chunks(question) 
+# 2. Gets formatted context from ChromaDB
+# 3. Generates answer using context
+# 4. Returns final response with citations
+```
 
 ## 🔒 Security Notes
 
-- **Temporary Storage**: ChromaDB uses temporary directories that are cleaned up automatically
+- **Persistent Storage**: ChromaDB uses persistent directories with configurable cleanup
 - **Local Processing**: Documents are processed locally before sending to AWS
-- **AWS IAM**: Ensure your AWS credentials have minimal required Bedrock permissions
+- **AWS IAM**: Ensure your AWS credentials have minimal required Bedrock permissions:
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "bedrock:InvokeModel"
+        ],
+        "Resource": "*"
+      }
+    ]
+  }
+  ```
 - **Data Privacy**: Consider data sensitivity when using cloud AI services
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-**Q: "No module named 'streamlit'"**
+**Q: "No module named 'strands'"**
 ```bash
-pip install streamlit
+pip install strands-agents
 ```
 
 **Q: "Unable to locate credentials"**
@@ -175,7 +224,7 @@ pip install streamlit
 - Ensure Bedrock models are enabled in AWS Console
 
 **Q: "No valid documents found to index"**
-- Upload documents first via "Upload Files" tab
+- Upload documents first via "Upload & Re-Index" tab
 - Ensure files are PDF, TXT, or MD format
 - Check that files have readable content
 
@@ -183,9 +232,19 @@ pip install streamlit
 - Re-index your knowledgebase
 - Verify Bedrock models are enabled
 - Check AWS credentials and permissions
+- Try the "Test Retrieval" feature first
+
+**Q: "Collection count error"**
+- ChromaDB persistence directory may be corrupted
+- Try re-indexing to create a fresh collection
 
 ### Debug Mode
-Add this to see more detailed logs:
+Use the "🧪 Test Retrieval" feature to:
+- Verify chunks are being retrieved
+- Check similarity scores
+- Inspect chunk content before LLM processing
+
+Add detailed logging:
 ```python
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -229,7 +288,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - [AWS Bedrock](https://aws.amazon.com/bedrock/) for AI models
-- [LangChain](https://langchain.com/) for AI framework
+- [Strands](https://github.com/strands-ai/strands) for lightweight agent framework
 - [Streamlit](https://streamlit.io/) for web interface
 - [ChromaDB](https://www.trychroma.com/) for vector storage
 
