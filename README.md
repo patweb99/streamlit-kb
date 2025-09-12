@@ -41,12 +41,23 @@ User Question → Strands Agent → Retrieval Tool → Relevant Chunks → AWS B
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd genai-bedrock-knowledgebase
+   cd streamlit-kb
    ```
 
 2. **Install dependencies**
+   
+   **Option A: Using pip (traditional)**
    ```bash
    pip install -r requirements.txt
+   ```
+   
+   **Option B: Using uv (faster, recommended)**
+   ```bash
+   # Install uv if you haven't already
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   # Install dependencies with uv
+   uv pip install -r requirements.txt
    ```
 
 3. **Set up AWS credentials** (choose one method):
