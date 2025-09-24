@@ -76,7 +76,7 @@ CHROMA_DIR = os.path.join(TEMP_DIR, "chroma_db")
 # atexit.register(cleanup_temp_dir)
 
 # AWS Bedrock model IDs - these are the AI models we'll use
-AWS_BEDROCK_EMBEDDING_MODEL_ID = "amazon.titan-embed-text-v1"  # For converting text to vectors
+AWS_BEDROCK_EMBEDDING_MODEL_ID = "amazon.titan-embed-text-v2:0"  # For converting text to vectors
 AWS_BEDROCK_LLM_MODEL_ID = "us.amazon.nova-micro-v1:0"          # For answering questions
 AWS_REGION = "us-west-2"  # AWS region where Bedrock is available
 
