@@ -27,7 +27,7 @@
 #
 # Optional .env file in the same directory:
 #   AWS_REGION=us-west-2
-#   EMBED_MODEL_ID=amazon.titan-embed-text-v1
+#   EMBED_MODEL_ID=amazon.titan-embed-text-v2:0
 #   LLM_MODEL_ID=us.anthropic.claude-3-5-haiku-20241022-v1:0
 #
 # -----------------------------------------------------------
@@ -75,10 +75,10 @@ load_dotenv()
 
 # Region & model IDs: you can override via .env or edit defaults here
 AWS_REGION = os.getenv("AWS_REGION", "us-west-2")
-EMBED_MODEL_ID = os.getenv("EMBED_MODEL_ID", "amazon.titan-embed-text-v1")  # Titan embeddings
+EMBED_MODEL_ID = os.getenv("EMBED_MODEL_ID", "amazon.titan-embed-text-v2:0")  # Titan embeddings
 DEFAULT_LLM_MODEL_ID = os.getenv(
     "LLM_MODEL_ID",
-    "us.anthropic.claude-3-5-haiku-20241022-v1:0"  # Bedrock Anthropic model (Claude Haiku as example)
+    "us.openai.gpt-oss-120b-1:0"  # Bedrock Anthropic model (Claude Haiku as example)
 )
 
 # Folder to store uploads & converted text
@@ -395,18 +395,13 @@ st.title("🧠 Knowledgebase (Strands + Bedrock) — No LangChain")
 if "vectorstore_loaded" not in st.session_state:
     st.session_state["vectorstore_loaded"] = False
 
-# Sidebar navigation
-st.sidebar.title("🧭 Navigation")
-page = st.sidebar.radio(
-    "Go to",
-    ["📤 Upload & Re-Index", "🗑️ Delete Files", "💬 Ask Questions"],
-    index=0,
-)
+# Create tabs for navigation
+tab1, tab2, tab3 = st.tabs(["📤 Upload & Re-Index", "🗑️ Delete Files", "💬 Ask Questions"])
 
 # -----------------------------------------------------------
-# PAGE: Upload & Re-Index
+# TAB: Upload & Re-Index
 # -----------------------------------------------------------
-if page == "📤 Upload & Re-Index":
+with tab1:
     st.header("📤 Upload Files")
     st.info(
         "Upload .pdf/.md/.txt files. After uploading, click **Re-index Knowledgebase** to build the vector index."
@@ -459,10 +454,12 @@ if page == "📤 Upload & Re-Index":
             st.write("•", f)
 
 
+
+
 # -----------------------------------------------------------
-# PAGE: Delete Files
+# TAB: Delete Files
 # -----------------------------------------------------------
-elif page == "🗑️ Delete Files":
+with tab2:
     st.header("🗑️ Delete Files")
     files = [f for f in os.listdir(DATA_DIR) if f.endswith((".txt", ".md"))]
     selected = st.multiselect("Select files to delete", files)
@@ -478,10 +475,12 @@ elif page == "🗑️ Delete Files":
             st.success(f"Deleted {deleted} file(s). Re-index to refresh the database.")
 
 
+
+
 # -----------------------------------------------------------
-# PAGE: Ask Questions
+# TAB: Ask Questions
 # -----------------------------------------------------------
-elif page == "💬 Ask Questions":
+with tab3:
     st.header("💬 Ask Questions")
 
     # Streamlit reruns can drop globals — rehydrate Chroma from disk if needed

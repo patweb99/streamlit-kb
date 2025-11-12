@@ -71,14 +71,14 @@ User Question → Strands Agent → Retrieval Tool → Relevant Chunks → AWS B
    ```bash
    export AWS_ACCESS_KEY_ID=your_access_key
    export AWS_SECRET_ACCESS_KEY=your_secret_key
-   export AWS_DEFAULT_REGION=us-west-2
+   export AWS_DEFAULT_REGION=us-east-1
    ```
    
    **Option C: .env file**
    ```bash
    # Create .env file in project root
-   AWS_REGION=us-west-2
-   EMBED_MODEL_ID=amazon.titan-embed-text-v1
+   AWS_REGION=us-east-1
+   EMBED_MODEL_ID=amazon.titan-embed-text-v2:0
    LLM_MODEL_ID=us.anthropic.claude-3-5-haiku-20241022-v1:0
    ```
 
@@ -226,7 +226,11 @@ agent = Agent(model=bedrock_model, tools=[retrieve_chunks])
 
 **Q: "No module named 'strands'"**
 ```bash
+# Using pip
 pip install strands-agents
+
+# Using uv
+uv pip install strands-agents
 ```
 
 **Q: "Unable to locate credentials"**
@@ -283,6 +287,36 @@ COPY . .
 EXPOSE 8501
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
+
+## 🤖 Kiro AI Development
+
+This project includes Kiro AI integration for enhanced development workflows:
+
+- **Specs**: Structured feature development with task tracking
+- **Vibecoding**: Natural language collaboration with AI
+- **MCP Integration**: Asana task management built-in
+- **Hooks**: Automated workflows on file save, git commit, etc.
+
+### 📚 Kiro Documentation
+
+- **[Getting Started](.kiro/GETTING_STARTED.md)** - ⭐ Start here! Setup checklist
+- **[Complete Guide](KIRO_GUIDE.md)** - Full documentation on all features
+- **[Quick Reference](.kiro/QUICK_REFERENCE.md)** - Common commands and patterns
+
+### Quick Kiro Setup
+
+1. **Configure Asana** (optional):
+   ```bash
+   cp .kiro/asana-config.example.json .kiro/asana-config.json
+   # Edit with your Asana workspace and project IDs
+   ```
+
+2. **Start vibecoding**:
+   ```
+   "Add a new feature to export search results to CSV"
+   "Create a spec for implementing user authentication"
+   "Set up a hook to run tests on file save"
+   ```
 
 ## 🤝 Contributing
 
