@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "asana": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.asana.com/sse"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "asana_get_projects",
+        "asana_get_projects",
+        "asana_search_tasks",
+        "asana_get_tasks",
+        "asana_get_task",
+        "asana_get_project_sections"
+      ]
+    }
+  }
+}
